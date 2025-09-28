@@ -18,16 +18,15 @@ class TableSongs extends TableWidget
     public function table(Table $table): Table
     {
         return $table
-            ->query(fn(): Builder => Songs::query())
+            ->query(fn(): Builder => Songs::query()->latest())
+            ->paginated([3, 10])
             ->columns([
-                TextColumn::make('title')
-                    ->label('Title')
-                    ->searchable(),
                 ImageColumn::make('cover_image')
                     ->size(50)
-                    ->label('Image'),
-                TextColumn::make('artist.name')
-                ->label('Artist'),
+                    ->label('Songs Cover'),
+                TextColumn::make('title')
+                    ->label('Song')
+                    ->description(fn($record)=>$record->artist->name),
                 TextColumn::make('category.name')
                 ->label('Category'),
                 TextColumn::make('play_count')

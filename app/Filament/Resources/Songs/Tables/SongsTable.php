@@ -9,6 +9,7 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Str;
 
 class SongsTable
 {
@@ -19,12 +20,14 @@ class SongsTable
                 TextColumn::make('id')
                 ->label('ID')
                 ->sortable(),
-                TextColumn::make('title')
-                ->label('Title')
-                ->searchable(),
                 ImageColumn::make('cover_image')
                 ->size(50)
-                ->label('Image'),
+                ->square()
+                ->label('Songs Cover'),
+                TextColumn::make('title')
+                ->label('Songs')
+                ->description(fn ($record) => Str::limit($record->file_music, 50))
+                ->searchable(),
                 TextColumn::make('category.name')
                 ->label('Category'),
                 TextColumn::make('artist.name')
@@ -37,8 +40,6 @@ class SongsTable
                 ->label('Lyrics')
                 ->limit(50)
                 ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('file_music')
-                ->label('Music'),
                 TextColumn::make('duration')
                 ->label('Duration'),
                 TextColumn::make('play_count')

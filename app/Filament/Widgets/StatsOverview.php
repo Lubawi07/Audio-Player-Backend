@@ -5,7 +5,10 @@ namespace App\Filament\Widgets;
 use App\Models\Album;
 use App\Models\Artist;
 use App\Models\Categories;
+use App\Models\Roles;
 use App\Models\Songs;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
 use Filament\Widgets\StatsOverviewWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
@@ -33,7 +36,20 @@ class StatsOverview extends StatsOverviewWidget
             ->icon('heroicon-o-musical-note')
             ->descriptionIcon('heroicon-m-arrow-trending-up')
             ->descriptionColor( 'success')
-            ->description(Songs::whereDate('created_at', '>=', now()->subWeek())->count(). ' new this week')
+            ->description(Songs::whereDate('created_at', '>=', now()->subWeek())->count(). ' new this week'),
+            Stat::make('Users Total', User::count())
+            ->icon('heroicon-o-users')
+            ->descriptionIcon('heroicon-m-arrow-trending-up')
+            ->descriptionColor( 'success')
+            ->description(User::whereDate('created_at', '>=', now()->subWeek())->count(). ' new this week'),
+            Stat::make('Roles Total', Role::count())
+            ->icon('heroicon-o-user-group')
         ];
     }
+
+    // protected function getColumns(): int | array
+    // {
+    //     return 5; //Set widget in 5 items on 1 row
+    // }
+
 }

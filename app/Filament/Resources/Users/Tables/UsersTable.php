@@ -8,6 +8,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Str;
 
 class UsersTable
 {
@@ -24,6 +25,11 @@ class UsersTable
                 TextColumn::make('email')
                 ->icon('heroicon-m-envelope')
                 ->label('Email Address'),
+                TextColumn::make('roles.name')
+                ->label('Role')
+                ->badge()
+                ->default('No Roles')
+                ->color('warning'),
                 TextColumn::make('created_at')
                 ->label('Date Created')
                 ->since(),

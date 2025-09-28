@@ -9,6 +9,7 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Str;
 
 class ArtistsTable
 {
@@ -24,7 +25,8 @@ class ArtistsTable
                 ->size(50)
                 ->label('Avatar'),
                 TextColumn::make('name')
-                ->label('Name')
+                ->label('Artist')
+                ->description(fn ($record) => Str::limit($record->bio, 50))
                 ->searchable(),
                 TextColumn::make('created_at')
                 ->label('Date Created'),

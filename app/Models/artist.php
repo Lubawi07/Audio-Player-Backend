@@ -2,14 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Artist extends Model
 {
+    use HasFactory;
     protected $table = 'artist';
     protected $fillable = [
         'cover_image',
-        'name'
+        'name',
+        'bio'
     ];
 
     public function song (){

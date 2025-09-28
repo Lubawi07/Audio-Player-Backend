@@ -20,16 +20,16 @@ class AlbumsTable
                 ->label('ID')
                 ->sortable(),
                 ImageColumn::make('cover_image')
-                ->circular()
+                ->square()
                 ->size(50)
-                ->label('Thumbnail'),
+                ->label('Album Cover'),
                 TextColumn::make('title')
                 ->label('Title')
                 ->searchable(),
                 TextColumn::make('artist.name')
                 ->label('Artist'),
                 TextColumn::make('release_date')
-                ->dateTime(),
+                ->date(),
                 TextColumn::make('created_at')
                 ->label('Date Created')
                 ->dateTime(),

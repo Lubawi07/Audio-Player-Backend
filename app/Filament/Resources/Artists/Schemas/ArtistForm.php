@@ -3,6 +3,8 @@
 namespace App\Filament\Resources\Artists\Schemas;
 
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
@@ -18,16 +20,27 @@ class ArtistForm
                 Section::make('Artist Info')
                     ->description('Add or edit artist details')
                     ->schema([
-                        FileUpload::make('cover_image')
-                            ->label('Avatar')
-                            ->image()
-                            ->required(),
-                        TextInput::make('name')
-                            ->label('Name')
+                        Grid::make(2)
+                            ->schema([
+                                FileUpload::make('cover_image')
+                                    ->label('Avatar')
+                                    ->image()
+                                    ->columnSpanFull()
+                                    ->required(),
+                                TextInput::make('name')
+                                    ->label('Name')
+                                    ->columnSpanFull()
+                                    ->required(),
+                            ])
+                            ]),
+                    Section::make('Bio Info')
+                    ->collapsible()
+                    ->schema([
+                        Textarea::make('bio')
+                            ->label('Bio')
+                            ->columnSpanFull()
                             ->required(),
                     ])
-                    ->columnSpanFull()
-
             ]);
     }
 }

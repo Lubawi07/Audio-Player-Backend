@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Categories;
 
+use App\Filament\Resources\Categories\CategoriesResource\Api\Transformers\CategoriesTransformer;
 use App\Filament\Resources\Categories\Pages\CreateCategories;
 use App\Filament\Resources\Categories\Pages\EditCategories;
 use App\Filament\Resources\Categories\Pages\ListCategories;
@@ -24,6 +25,13 @@ class CategoriesResource extends Resource
     protected static string|UnitEnum|null $navigationGroup = 'Music Management';
 
     // protected static ?string $recordTitleAttribute = 'categories';
+
+
+    // For result data API (custom) not full
+    public static function getApiTransformer()
+    {
+        return CategoriesTransformer::class;
+    }
 
     public static function form(Schema $schema): Schema
     {
