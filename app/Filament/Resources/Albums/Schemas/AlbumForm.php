@@ -25,6 +25,8 @@ class AlbumForm
                         TextInput::make('title')
                             ->required(),
                         FileUpload::make('cover_image')
+                            ->disk('public')
+                            ->directory('image')
                             ->required(),
                         Select::make('artist_id')
                             ->relationship('artist','name')

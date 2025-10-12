@@ -24,6 +24,8 @@ class ArtistForm
                             ->schema([
                                 FileUpload::make('cover_image')
                                     ->label('Avatar')
+                                    ->disk('public')
+                                    ->directory('image/avatar')
                                     ->image()
                                     ->columnSpanFull()
                                     ->required(),

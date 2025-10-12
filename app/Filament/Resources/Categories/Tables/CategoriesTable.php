@@ -17,6 +17,7 @@ class CategoriesTable
             ->columns([
                 TextColumn::make('id')
                 ->label('ID')
+                ->rowIndex()
                 ->sortable(),
                 TextColumn::make('name')
                 ->label('Name')

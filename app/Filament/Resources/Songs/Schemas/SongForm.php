@@ -67,10 +67,14 @@ class SongForm
                         ->schema([
                             FileUpload::make('cover_image')
                             ->label('Cover Image')
+                            ->disk('public')
+                            ->directory('image')
                             ->image()
                             ->required(),
                         FileUpload::make('file_music')
                             ->label('File Music')
+                            ->disk('public')
+                            ->directory('music file')
                             ->acceptedFileTypes(['audio/mpeg'])
                             ->required(),
                         ])

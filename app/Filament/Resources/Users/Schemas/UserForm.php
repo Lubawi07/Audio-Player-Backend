@@ -20,7 +20,8 @@ class UserForm
                             ->schema([
                                 TextInput::make('name')
                                 ->label('Name')
-                                ->required(),
+                                ->required()
+                                ->prefixIcon('heroicon-m-user'),
                                 TextInput::make('email')
                                 ->label('Email')
                                 ->required()

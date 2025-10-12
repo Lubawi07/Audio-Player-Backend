@@ -19,10 +19,12 @@ class SongsTable
             ->columns([
                 TextColumn::make('id')
                 ->label('ID')
+                ->rowIndex()
                 ->sortable(),
                 ImageColumn::make('cover_image')
                 ->size(50)
                 ->square()
+                ->disk('public')
                 ->label('Songs Cover'),
                 TextColumn::make('title')
                 ->label('Songs')

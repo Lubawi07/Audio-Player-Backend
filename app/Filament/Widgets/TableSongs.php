@@ -23,6 +23,7 @@ class TableSongs extends TableWidget
             ->columns([
                 ImageColumn::make('cover_image')
                     ->size(50)
+                    ->disk('public')
                     ->label('Songs Cover'),
                 TextColumn::make('title')
                     ->label('Song')

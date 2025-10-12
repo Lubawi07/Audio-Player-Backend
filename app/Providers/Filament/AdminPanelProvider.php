@@ -44,7 +44,7 @@ class AdminPanelProvider extends PanelProvider
                 NavigationGroup::make()
                     ->label('Music Management')
             ])
-            ->globalSearch(false)
+            ->globalSearch(true)
             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
             ->globalSearchFieldKeyBindingSuffix()
             ->globalSearchFieldSuffix(fn(): ?string => match (Platform::detect()) {
@@ -52,6 +52,9 @@ class AdminPanelProvider extends PanelProvider
                 Platform::Mac => '⌘K',
                 default => null,
             })
+            ->databaseNotifications()
+            ->databaseNotificationsPolling('5s')
+            // ->unsavedChangesAlerts()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
@@ -74,8 +77,12 @@ class AdminPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->plugins([
-                FilamentShieldPlugin::make(),
-                ApiServicePlugin::make()
+                FilamentShieldPlugin::make()
+                    // Global search config
+                    ->globallySearchable(true)
+                    // Label config
+                    ->recordTitleAttribute('name'),
+                ApiServicePlugin::make(),
             ])
             ->authMiddleware([
                 Authenticate::class,

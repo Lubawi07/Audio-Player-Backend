@@ -19,9 +19,11 @@ class ArtistsTable
             ->columns([
                 TextColumn::make('id')
                 ->label('ID')
+                ->rowIndex()
                 ->sortable(),
                 ImageColumn::make('cover_image')
                 ->circular()
+                ->disk('public')
                 ->size(50)
                 ->label('Avatar'),
                 TextColumn::make('name')

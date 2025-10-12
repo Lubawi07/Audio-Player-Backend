@@ -18,10 +18,12 @@ class AlbumsTable
             ->columns([
                 TextColumn::make('id')
                 ->label('ID')
+                ->rowIndex()
                 ->sortable(),
                 ImageColumn::make('cover_image')
                 ->square()
                 ->size(50)
+                ->disk('public')
                 ->label('Album Cover'),
                 TextColumn::make('title')
                 ->label('Title')
